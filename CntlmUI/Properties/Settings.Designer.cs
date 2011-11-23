@@ -118,5 +118,17 @@ namespace CntlmUI.Properties {
                 this["Autoconnect"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string AuthMode {
+            get {
+                return ((string)(this["AuthMode"]));
+            }
+            set {
+                this["AuthMode"] = value;
+            }
+        }
     }
 }

@@ -159,6 +159,8 @@ namespace CntlmUI
 
                 config.Username = Environment.UserName;
                 config.Domain = Environment.UserDomainName;
+                comboBoxAuth.SelectedIndex = 0;
+                config.AuthMode = (string)comboBoxAuth.SelectedItem;
 
                 config.FirstRun = false;
             }
@@ -166,6 +168,7 @@ namespace CntlmUI
             textBoxUser.Text = config.Username;
             textBoxDomain.Text = config.Domain;
             textBoxProxy.Text = config.Proxy;
+            comboBoxAuth.SelectedText = config.AuthMode;
             textBoxListen.Text = config.Listen;
             checkBoxAutostart.Checked = IsAutoStartEnabled;
             checkBoxAutoconnect.Checked = config.Autoconnect;
@@ -180,6 +183,7 @@ namespace CntlmUI
             config.Username = textBoxUser.Text;
             config.Domain = textBoxDomain.Text;
             config.Proxy = textBoxProxy.Text;
+            config.AuthMode = (string)comboBoxAuth.SelectedItem;
             config.Listen = textBoxListen.Text;
             config.Save();
             this.Hide();

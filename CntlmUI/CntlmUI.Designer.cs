@@ -48,13 +48,15 @@
             this.textBoxProxy = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.checkBoxLM = new System.Windows.Forms.CheckBox();
+            this.comboBoxAuth = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.textBoxListen = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.checkBoxAutostart = new System.Windows.Forms.CheckBox();
             this.checkBoxAutoconnect = new System.Windows.Forms.CheckBox();
+            this.checkBoxAutostart = new System.Windows.Forms.CheckBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.contextMenuStripTray.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -212,29 +214,45 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label10);
+            this.groupBox2.Controls.Add(this.comboBoxAuth);
+            this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.checkBoxLM);
             this.groupBox2.Controls.Add(this.textBoxProxy);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.textBoxListen);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Location = new System.Drawing.Point(12, 104);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(373, 104);
+            this.groupBox2.Size = new System.Drawing.Size(373, 113);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cntlm Settings";
             // 
-            // checkBoxLM
+            // comboBoxAuth
             // 
-            this.checkBoxLM.AutoSize = true;
-            this.checkBoxLM.Location = new System.Drawing.Point(24, 75);
-            this.checkBoxLM.Name = "checkBoxLM";
-            this.checkBoxLM.Size = new System.Drawing.Size(102, 17);
-            this.checkBoxLM.TabIndex = 11;
-            this.checkBoxLM.Text = "use old LM auth";
-            this.checkBoxLM.UseVisualStyleBackColor = true;
+            this.comboBoxAuth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxAuth.Enabled = false;
+            this.comboBoxAuth.FormattingEnabled = true;
+            this.comboBoxAuth.Items.AddRange(new object[] {
+            "NTLM",
+            "LM",
+            "NT"});
+            this.comboBoxAuth.Location = new System.Drawing.Point(63, 75);
+            this.comboBoxAuth.Name = "comboBoxAuth";
+            this.comboBoxAuth.Size = new System.Drawing.Size(53, 21);
+            this.comboBoxAuth.TabIndex = 12;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Enabled = false;
+            this.label9.Location = new System.Drawing.Point(21, 78);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(32, 13);
+            this.label9.TabIndex = 11;
+            this.label9.Text = "Auth:";
             // 
             // label8
             // 
@@ -267,12 +285,23 @@
             // 
             this.groupBox3.Controls.Add(this.checkBoxAutoconnect);
             this.groupBox3.Controls.Add(this.checkBoxAutostart);
-            this.groupBox3.Location = new System.Drawing.Point(13, 214);
+            this.groupBox3.Location = new System.Drawing.Point(13, 223);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(373, 64);
+            this.groupBox3.Size = new System.Drawing.Size(373, 55);
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Application Settings";
+            // 
+            // checkBoxAutoconnect
+            // 
+            this.checkBoxAutoconnect.AutoSize = true;
+            this.checkBoxAutoconnect.Location = new System.Drawing.Point(165, 28);
+            this.checkBoxAutoconnect.Name = "checkBoxAutoconnect";
+            this.checkBoxAutoconnect.Size = new System.Drawing.Size(158, 17);
+            this.checkBoxAutoconnect.TabIndex = 1;
+            this.checkBoxAutoconnect.Text = "Connect on application start";
+            this.checkBoxAutoconnect.UseVisualStyleBackColor = true;
+            this.checkBoxAutoconnect.CheckedChanged += new System.EventHandler(this.checkBoxAutoconnect_CheckedChanged);
             // 
             // checkBoxAutostart
             // 
@@ -285,16 +314,15 @@
             this.checkBoxAutostart.UseVisualStyleBackColor = true;
             this.checkBoxAutostart.CheckedChanged += new System.EventHandler(this.checkBoxAutostart_CheckedChanged);
             // 
-            // checkBoxAutoconnect
+            // label10
             // 
-            this.checkBoxAutoconnect.AutoSize = true;
-            this.checkBoxAutoconnect.Location = new System.Drawing.Point(165, 28);
-            this.checkBoxAutoconnect.Name = "checkBoxAutoconnect";
-            this.checkBoxAutoconnect.Size = new System.Drawing.Size(158, 17);
-            this.checkBoxAutoconnect.TabIndex = 1;
-            this.checkBoxAutoconnect.Text = "Connect on application start";
-            this.checkBoxAutoconnect.UseVisualStyleBackColor = true;
-            this.checkBoxAutoconnect.CheckedChanged += new System.EventHandler(this.checkBoxAutoconnect_CheckedChanged);
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(122, 78);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(103, 13);
+            this.label10.TabIndex = 13;
+            this.label10.Text = "Not implemented yet";
             // 
             // CntlmUI
             // 
@@ -347,11 +375,13 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBoxListen;
-        private System.Windows.Forms.CheckBox checkBoxLM;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.CheckBox checkBoxAutostart;
         private System.Windows.Forms.CheckBox checkBoxAutoconnect;
+        private System.Windows.Forms.ComboBox comboBoxAuth;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
     }
 }
 
