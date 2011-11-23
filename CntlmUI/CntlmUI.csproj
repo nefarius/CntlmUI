@@ -110,7 +110,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="1321979294_weather_06.ico" />
     <Content Include="network-firewall.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

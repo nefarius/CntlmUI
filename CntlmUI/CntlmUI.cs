@@ -26,6 +26,10 @@ namespace CntlmUI
         private int cntlmPid = 0;
         private const string RUN_LOCATION = @"Software\Microsoft\Windows\CurrentVersion\Run";
         private const string VALUE_NAME = "CntlmUI";
+        private string CntlmBinary
+        {
+            get { return Path.Combine(Path.GetDirectoryName(CurrentApplicationLocation), "cntlm.exe"); }
+        }
 
         public CntlmUI()
         {
@@ -186,7 +190,7 @@ namespace CntlmUI
             Regex PassNTLMv2 = new Regex(@"^PassNTLMv2\s*(\S*)\s*", RegexOptions.Multiline);
 
             Process cntlm = new Process();
-            cntlm.StartInfo.FileName = "cntlm.exe";
+            cntlm.StartInfo.FileName = CntlmBinary;
             cntlm.StartInfo.Arguments = string.Format("-u {0} -d {1} -H -p {2}", 
                 config.Username, config.Domain, plain);
             cntlm.StartInfo.UseShellExecute = false;
@@ -205,7 +209,7 @@ namespace CntlmUI
         {
             Uri proxy = new Uri(config.Proxy);
             Process cntlm = new Process();
-            cntlm.StartInfo.FileName = "cntlm.exe";
+            cntlm.StartInfo.FileName = CntlmBinary;
             cntlm.StartInfo.Arguments = string.Format("-v -u {0} -d {1} -p {2} -l {3} {4}:{5}",
                 config.Username,
                 config.Domain,
