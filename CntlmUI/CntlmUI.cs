@@ -159,8 +159,13 @@ namespace CntlmUI
 
                 config.Username = Environment.UserName;
                 config.Domain = Environment.UserDomainName;
-                comboBoxAuth.SelectedIndex = 0;
-                config.AuthMode = (string)comboBoxAuth.SelectedItem;
+
+                if (radioButtonNTLM.Checked)
+                    config.AuthMode = radioButtonNTLM.Text;
+                if (radioButtonLM.Checked)
+                    config.AuthMode = radioButtonLM.Text;
+                if (radioButtonNT.Checked)
+                    config.AuthMode = radioButtonNT.Text;
 
                 config.FirstRun = false;
             }
@@ -168,7 +173,18 @@ namespace CntlmUI
             textBoxUser.Text = config.Username;
             textBoxDomain.Text = config.Domain;
             textBoxProxy.Text = config.Proxy;
-            comboBoxAuth.SelectedText = config.AuthMode;
+            switch (config.AuthMode)
+            {
+                case "NTLM":
+                    radioButtonNTLM.Checked = true;
+                    break;
+                case "LM":
+                    radioButtonLM.Checked = true;
+                    break;
+                case "NT":
+                    radioButtonNT.Checked = true;
+                    break;
+            }
             textBoxListen.Text = config.Listen;
             checkBoxAutostart.Checked = IsAutoStartEnabled;
             checkBoxAutoconnect.Checked = config.Autoconnect;
@@ -183,7 +199,12 @@ namespace CntlmUI
             config.Username = textBoxUser.Text;
             config.Domain = textBoxDomain.Text;
             config.Proxy = textBoxProxy.Text;
-            config.AuthMode = (string)comboBoxAuth.SelectedItem;
+            if (radioButtonNTLM.Checked)
+                config.AuthMode = radioButtonNTLM.Text;
+            if (radioButtonLM.Checked)
+                config.AuthMode = radioButtonLM.Text;
+            if (radioButtonNT.Checked)
+                config.AuthMode = radioButtonNT.Text;
             config.Listen = textBoxListen.Text;
             config.Save();
             this.Hide();
@@ -214,13 +235,14 @@ namespace CntlmUI
             Uri proxy = new Uri(config.Proxy);
             Process cntlm = new Process();
             cntlm.StartInfo.FileName = CntlmBinary;
-            cntlm.StartInfo.Arguments = string.Format("-v -u {0} -d {1} -p {2} -l {3} {4}:{5}",
+            cntlm.StartInfo.Arguments = string.Format("-v -a {6} -u {0} -d {1} -p {2} -l {3} {4}:{5}",
                 config.Username,
                 config.Domain,
                 config.Password,
                 config.Listen,
                 proxy.Host,
-                proxy.Port);
+                proxy.Port,
+                config.AuthMode.ToLower());
             cntlm.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             cntlm.Start();
 

@@ -48,7 +48,6 @@
             this.textBoxProxy = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.comboBoxAuth = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.textBoxListen = new System.Windows.Forms.TextBox();
@@ -56,7 +55,9 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.checkBoxAutoconnect = new System.Windows.Forms.CheckBox();
             this.checkBoxAutostart = new System.Windows.Forms.CheckBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.radioButtonNTLM = new System.Windows.Forms.RadioButton();
+            this.radioButtonLM = new System.Windows.Forms.RadioButton();
+            this.radioButtonNT = new System.Windows.Forms.RadioButton();
             this.contextMenuStripTray.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -214,8 +215,9 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Controls.Add(this.comboBoxAuth);
+            this.groupBox2.Controls.Add(this.radioButtonNT);
+            this.groupBox2.Controls.Add(this.radioButtonLM);
+            this.groupBox2.Controls.Add(this.radioButtonNTLM);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label5);
@@ -230,24 +232,9 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cntlm Settings";
             // 
-            // comboBoxAuth
-            // 
-            this.comboBoxAuth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxAuth.Enabled = false;
-            this.comboBoxAuth.FormattingEnabled = true;
-            this.comboBoxAuth.Items.AddRange(new object[] {
-            "NTLM",
-            "LM",
-            "NT"});
-            this.comboBoxAuth.Location = new System.Drawing.Point(63, 75);
-            this.comboBoxAuth.Name = "comboBoxAuth";
-            this.comboBoxAuth.Size = new System.Drawing.Size(53, 21);
-            this.comboBoxAuth.TabIndex = 12;
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Enabled = false;
             this.label9.Location = new System.Drawing.Point(21, 78);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(32, 13);
@@ -314,15 +301,37 @@
             this.checkBoxAutostart.UseVisualStyleBackColor = true;
             this.checkBoxAutostart.CheckedChanged += new System.EventHandler(this.checkBoxAutostart_CheckedChanged);
             // 
-            // label10
+            // radioButtonNTLM
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(122, 78);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(103, 13);
-            this.label10.TabIndex = 13;
-            this.label10.Text = "Not implemented yet";
+            this.radioButtonNTLM.AutoSize = true;
+            this.radioButtonNTLM.Location = new System.Drawing.Point(63, 76);
+            this.radioButtonNTLM.Name = "radioButtonNTLM";
+            this.radioButtonNTLM.Size = new System.Drawing.Size(55, 17);
+            this.radioButtonNTLM.TabIndex = 12;
+            this.radioButtonNTLM.Text = "NTLM";
+            this.radioButtonNTLM.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonLM
+            // 
+            this.radioButtonLM.AutoSize = true;
+            this.radioButtonLM.Checked = true;
+            this.radioButtonLM.Location = new System.Drawing.Point(124, 76);
+            this.radioButtonLM.Name = "radioButtonLM";
+            this.radioButtonLM.Size = new System.Drawing.Size(40, 17);
+            this.radioButtonLM.TabIndex = 13;
+            this.radioButtonLM.TabStop = true;
+            this.radioButtonLM.Text = "LM";
+            this.radioButtonLM.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonNT
+            // 
+            this.radioButtonNT.AutoSize = true;
+            this.radioButtonNT.Location = new System.Drawing.Point(170, 76);
+            this.radioButtonNT.Name = "radioButtonNT";
+            this.radioButtonNT.Size = new System.Drawing.Size(40, 17);
+            this.radioButtonNT.TabIndex = 14;
+            this.radioButtonNT.Text = "NT";
+            this.radioButtonNT.UseVisualStyleBackColor = true;
             // 
             // CntlmUI
             // 
@@ -379,9 +388,10 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.CheckBox checkBoxAutostart;
         private System.Windows.Forms.CheckBox checkBoxAutoconnect;
-        private System.Windows.Forms.ComboBox comboBoxAuth;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.RadioButton radioButtonNT;
+        private System.Windows.Forms.RadioButton radioButtonLM;
+        private System.Windows.Forms.RadioButton radioButtonNTLM;
     }
 }
 
