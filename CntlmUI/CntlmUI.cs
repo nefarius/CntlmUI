@@ -23,7 +23,7 @@ namespace CntlmUI
         private bool mAllowClose;       // ContextMenu's Exit command used
         private bool mLoadFired;        // Form was shown once
         private Settings config = Settings.Default;
-        private int cntlmPid = 0;
+        private Process cntlmProc = null;
         private const string RUN_LOCATION = @"Software\Microsoft\Windows\CurrentVersion\Run";
         private const string VALUE_NAME = "CntlmUI";
         private string CntlmBinary
@@ -38,7 +38,7 @@ namespace CntlmUI
             mAllowVisible = config.FirstRun;
             if (config.Autoconnect && !config.FirstRun)
             {
-                Connect();
+                Start();
             }
         }
 
@@ -120,7 +120,7 @@ namespace CntlmUI
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Disconnect();
+            Stop();
             mAllowClose = mAllowVisible = true;
             if (!mLoadFired) Show();
             Application.Exit();
@@ -128,13 +128,13 @@ namespace CntlmUI
 
         private void connectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (cntlmPid == 0)
+            if (cntlmProc == null)
             {
-                Connect();
+                Start();
             }
             else
             {
-                Disconnect();
+                Stop();
             }
         }
 
@@ -230,12 +230,12 @@ namespace CntlmUI
             return hashes.Groups[1].Value;
         }
 
-        private void Connect()
+        private void Start()
         {
             Uri proxy = new Uri(config.Proxy);
-            Process cntlm = new Process();
-            cntlm.StartInfo.FileName = CntlmBinary;
-            cntlm.StartInfo.Arguments = string.Format("-v -a {6} -u {0} -d {1} -p {2} -l {3} {4}:{5}",
+            cntlmProc = new Process();
+            cntlmProc.StartInfo.FileName = CntlmBinary;
+            cntlmProc.StartInfo.Arguments = string.Format("-v -a {6} -u {0} -d {1} -p {2} -l {3} {4}:{5}",
                 config.Username,
                 config.Domain,
                 config.Password,
@@ -243,27 +243,38 @@ namespace CntlmUI
                 proxy.Host,
                 proxy.Port,
                 config.AuthMode.ToLower());
-            cntlm.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            cntlm.Start();
+            cntlmProc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            cntlmProc.EnableRaisingEvents = true;
+            cntlmProc.Exited += new EventHandler(cntlm_Exited);
+            cntlmProc.Start();
 
-            cntlmPid = cntlm.Id;
-            connectToolStripMenuItem.Text = "Disconnect";
+            connectToolStripMenuItem.Text = "Stop";
+
             notifyIconSysTray.ShowBalloonTip(500,
-                "Connected",
+                "Started",
                 string.Format("Listening on {0}", config.Listen),
                 ToolTipIcon.Info);
         }
 
-        private void Disconnect()
+        void cntlm_Exited(object sender, EventArgs e)
         {
-            if (cntlmPid != 0)
+            connectToolStripMenuItem.Text = "Start";
+            notifyIconSysTray.ShowBalloonTip(500,
+                "Startup failed",
+                "Cntlm could not be started.",
+                ToolTipIcon.Error);
+            cntlmProc = null;
+        }
+
+        private void Stop()
+        {
+            if (cntlmProc != null)
             {
-                Process cntlmProc = Process.GetProcessById(cntlmPid);
                 cntlmProc.Kill();
-                cntlmPid = 0;
-                connectToolStripMenuItem.Text = "Connect";
+                cntlmProc = null;
+                connectToolStripMenuItem.Text = "Start";
                 notifyIconSysTray.ShowBalloonTip(500,
-                    "Disconnected",
+                    "Terminated",
                     "Proxy process terminated.",
                     ToolTipIcon.Info);
             }
@@ -284,6 +295,15 @@ namespace CntlmUI
         private void checkBoxAutoconnect_CheckedChanged(object sender, EventArgs e)
         {
             config.Autoconnect = (sender as CheckBox).Checked;
+        }
+
+        private void textBoxProxy_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            if(!Uri.IsWellFormedUriString(tb.Text, UriKind.Absolute))
+            {
+                // TODO: implement!
+            }
         }
     }
 }

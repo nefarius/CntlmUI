@@ -48,6 +48,9 @@
             this.textBoxProxy = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radioButtonNT = new System.Windows.Forms.RadioButton();
+            this.radioButtonLM = new System.Windows.Forms.RadioButton();
+            this.radioButtonNTLM = new System.Windows.Forms.RadioButton();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.textBoxListen = new System.Windows.Forms.TextBox();
@@ -55,9 +58,6 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.checkBoxAutoconnect = new System.Windows.Forms.CheckBox();
             this.checkBoxAutostart = new System.Windows.Forms.CheckBox();
-            this.radioButtonNTLM = new System.Windows.Forms.RadioButton();
-            this.radioButtonLM = new System.Windows.Forms.RadioButton();
-            this.radioButtonNT = new System.Windows.Forms.RadioButton();
             this.contextMenuStripTray.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -79,27 +79,27 @@
             this.connectToolStripMenuItem,
             this.closeToolStripMenuItem});
             this.contextMenuStripTray.Name = "contextMenuStripTray";
-            this.contextMenuStripTray.Size = new System.Drawing.Size(121, 70);
+            this.contextMenuStripTray.Size = new System.Drawing.Size(153, 92);
             // 
             // showToolStripMenuItem
             // 
             this.showToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.showToolStripMenuItem.Name = "showToolStripMenuItem";
-            this.showToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.showToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.showToolStripMenuItem.Text = "Settings";
             this.showToolStripMenuItem.Click += new System.EventHandler(this.showToolStripMenuItem_Click);
             // 
             // connectToolStripMenuItem
             // 
             this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
-            this.connectToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
-            this.connectToolStripMenuItem.Text = "Connect";
+            this.connectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.connectToolStripMenuItem.Text = "Start";
             this.connectToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
@@ -203,6 +203,7 @@
             this.textBoxProxy.Name = "textBoxProxy";
             this.textBoxProxy.Size = new System.Drawing.Size(200, 20);
             this.textBoxProxy.TabIndex = 5;
+            this.textBoxProxy.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxProxy_Validating);
             // 
             // label7
             // 
@@ -231,6 +232,38 @@
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cntlm Settings";
+            // 
+            // radioButtonNT
+            // 
+            this.radioButtonNT.AutoSize = true;
+            this.radioButtonNT.Location = new System.Drawing.Point(170, 76);
+            this.radioButtonNT.Name = "radioButtonNT";
+            this.radioButtonNT.Size = new System.Drawing.Size(40, 17);
+            this.radioButtonNT.TabIndex = 14;
+            this.radioButtonNT.Text = "NT";
+            this.radioButtonNT.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonLM
+            // 
+            this.radioButtonLM.AutoSize = true;
+            this.radioButtonLM.Checked = true;
+            this.radioButtonLM.Location = new System.Drawing.Point(124, 76);
+            this.radioButtonLM.Name = "radioButtonLM";
+            this.radioButtonLM.Size = new System.Drawing.Size(40, 17);
+            this.radioButtonLM.TabIndex = 13;
+            this.radioButtonLM.TabStop = true;
+            this.radioButtonLM.Text = "LM";
+            this.radioButtonLM.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonNTLM
+            // 
+            this.radioButtonNTLM.AutoSize = true;
+            this.radioButtonNTLM.Location = new System.Drawing.Point(63, 76);
+            this.radioButtonNTLM.Name = "radioButtonNTLM";
+            this.radioButtonNTLM.Size = new System.Drawing.Size(55, 17);
+            this.radioButtonNTLM.TabIndex = 12;
+            this.radioButtonNTLM.Text = "NTLM";
+            this.radioButtonNTLM.UseVisualStyleBackColor = true;
             // 
             // label9
             // 
@@ -300,38 +333,6 @@
             this.checkBoxAutostart.Text = "Start on windows logon";
             this.checkBoxAutostart.UseVisualStyleBackColor = true;
             this.checkBoxAutostart.CheckedChanged += new System.EventHandler(this.checkBoxAutostart_CheckedChanged);
-            // 
-            // radioButtonNTLM
-            // 
-            this.radioButtonNTLM.AutoSize = true;
-            this.radioButtonNTLM.Location = new System.Drawing.Point(63, 76);
-            this.radioButtonNTLM.Name = "radioButtonNTLM";
-            this.radioButtonNTLM.Size = new System.Drawing.Size(55, 17);
-            this.radioButtonNTLM.TabIndex = 12;
-            this.radioButtonNTLM.Text = "NTLM";
-            this.radioButtonNTLM.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonLM
-            // 
-            this.radioButtonLM.AutoSize = true;
-            this.radioButtonLM.Checked = true;
-            this.radioButtonLM.Location = new System.Drawing.Point(124, 76);
-            this.radioButtonLM.Name = "radioButtonLM";
-            this.radioButtonLM.Size = new System.Drawing.Size(40, 17);
-            this.radioButtonLM.TabIndex = 13;
-            this.radioButtonLM.TabStop = true;
-            this.radioButtonLM.Text = "LM";
-            this.radioButtonLM.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonNT
-            // 
-            this.radioButtonNT.AutoSize = true;
-            this.radioButtonNT.Location = new System.Drawing.Point(170, 76);
-            this.radioButtonNT.Name = "radioButtonNT";
-            this.radioButtonNT.Size = new System.Drawing.Size(40, 17);
-            this.radioButtonNT.TabIndex = 14;
-            this.radioButtonNT.Text = "NT";
-            this.radioButtonNT.UseVisualStyleBackColor = true;
             // 
             // CntlmUI
             // 
