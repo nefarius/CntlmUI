@@ -30,6 +30,7 @@ namespace CntlmUI
         {
             get { return Path.Combine(Path.GetDirectoryName(CurrentApplicationLocation), "cntlm.exe"); }
         }
+        private EventHandler cntlmExited = null;
 
         public CntlmUI()
         {
@@ -40,6 +41,8 @@ namespace CntlmUI
             {
                 Start();
             }
+
+            cntlmExited = new EventHandler(cntlm_Exited);
         }
 
         /// <summary>
@@ -245,7 +248,7 @@ namespace CntlmUI
                 config.AuthMode.ToLower());
             cntlmProc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             cntlmProc.EnableRaisingEvents = true;
-            cntlmProc.Exited += new EventHandler(cntlm_Exited);
+            cntlmProc.Exited += cntlmExited;
             cntlmProc.Start();
 
             connectToolStripMenuItem.Text = "Stop";
@@ -259,10 +262,10 @@ namespace CntlmUI
         void cntlm_Exited(object sender, EventArgs e)
         {
             connectToolStripMenuItem.Text = "Start";
-            notifyIconSysTray.ShowBalloonTip(500,
-                "Startup failed",
-                "Cntlm could not be started.",
-                ToolTipIcon.Error);
+            MessageBox.Show("The subprocess died unexpectedly, please check your settings.", 
+                "Process died",
+                MessageBoxButtons.OK, 
+                MessageBoxIcon.Error);
             cntlmProc = null;
         }
 
@@ -270,7 +273,11 @@ namespace CntlmUI
         {
             if (cntlmProc != null)
             {
-                cntlmProc.Kill();
+                cntlmProc.Exited -= cntlmExited;
+                if(!cntlmProc.HasExited)
+                {
+                    cntlmProc.Kill();
+                }
                 cntlmProc = null;
                 connectToolStripMenuItem.Text = "Start";
                 notifyIconSysTray.ShowBalloonTip(500,
