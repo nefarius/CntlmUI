@@ -1,6 +1,4 @@
-﻿--- WARNING: THIS IS BETA-SOFTWARE, CRASHES AND UNKNOWN BEHAVIOR POSSIBLE ---
-
-CntlmUI is a small Windows front-end and agent for the Cntlm Authentication Proxy.
+﻿CntlmUI is a small Windows front-end and agent for the Cntlm Authentication Proxy.
 
 It supports
  - auto detection of current users proxy settings
@@ -12,6 +10,6 @@ It supports
  - NTLM, LM and NT auth mode
 
 
-A "ready-to-use" archiv is located in bin/Release, Cntlm binaries are included.
+A "ready-to-use" archiv is located in the Download section, Cntlm binaries are included.
 
 For more information see http://cntlm.sourceforge.net/
