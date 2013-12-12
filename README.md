@@ -1,4 +1,7 @@
-== Description ==
+CntlmUI
+=======
+Description
+-----------
 
 "Cntlm ([http://sf.net/apps/mediawiki/cntlm/ user-friendly wiki] / [http://cntlm.sourceforge.net/cntlm_manual.pdf technical manual] ) is an NTLM / NTLM Session Response / NTLMv2 authenticating HTTP proxy intended to help you break free from the chains of Microsoft proprietary world. You can use a free OS and honor our noble idea, but you can’t hide. Once you’re behind those cold steel bars of a corporate proxy server requiring NTLM authentication, you’re done with. The same even applies to 3rd party Windows applications, which don’t support NTLM natively.
 
@@ -6,7 +9,8 @@ Here comes Cntlm. It stands between your applications and the corporate proxy, a
 
 I was in the same situation: trapped behind a corporate proxy server with the convenience of automated NTLM authentication. No problems so far, as I’m using Windows 7. Someday I wanted to install Debian 6 in a virtual machine. It was a net-install ISO and of course it denied a collaboration with our companies proxy. After some googling I found the command line utility cntlm, which offered exactly what I was looking for. But wait, I’m a Windows user and using it via CMD or in a batch file just isn’t my style :-D So I hacked a little tool called CntlmUI (as always, my projects names are creative as hell, aren’t they?) which acts as a front-end for the Cntlm binary. Features implemented so far:
 
-== Features ==
+Features
+--------
 * auto detection of the current users proxy settings
 * auto detection of the current sessions user name and domain
 * automated hashing of the users password
