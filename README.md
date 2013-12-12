@@ -19,6 +19,6 @@ Features
 * auto connect on launch
 * choose between NTLM, LM and NT authentication mode
 
-A "ready-to-use" archiv is located in the Download section, Cntlm binaries are included.
+A "ready-to-use" archiv is located in the [Release](https://github.com/nefarius/CntlmUI/releases/latest) section, Cntlm binaries are included.
 
 For more information visit http://cntlm.sourceforge.net/
