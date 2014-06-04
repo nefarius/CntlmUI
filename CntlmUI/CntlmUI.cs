@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Collections;
-using System.IO;
-using System.Text.RegularExpressions;
-using CntlmUI.Properties;
-using System.Net;
 using System.Diagnostics;
-using Microsoft.Win32;
+using System.IO;
+using System.Net;
 using System.Reflection;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
+using CntlmUI.Properties;
+using Microsoft.Win32;
 
 namespace CntlmUI
 {
